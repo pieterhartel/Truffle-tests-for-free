@@ -22,7 +22,7 @@ Some contracts cannot be compiled with versions of Truffle later than v5.0.2.
 
 ## Description
 
-A test consists of executing the file `make.sh` in the directory of the contract. This shell script fires up `ganache-cli` with the parameters needed for the test. It then runs `truffle test` to compile, and deploy the contract, and to run the test.
+A test consists of executing the file `make.sh` in the directory of the contract. This shell script fires up `ganache-cli` with the parameters needed for the test. It then runs `truffle test` to compile, and deploy the contract, and to run the test. The example below was generated from the verified source available here: https://etherscan.io/address/0xef7c7254c290df3d167182356255cdfd8d3b400b#contracts
 ```
 Vitaluck_3b400b.dir/
 ├── contracts
@@ -41,7 +41,7 @@ Vitaluck_3b400b.dir/
 ```
 The structure of the `Vitaluck_3b400b.dir` sample directory follows the standard structure for Truffle tests. The directory `contracts` contains the Solidity code of the migration contract and the contract to be tested. The `migrations` directory contains the initial migration script. The `test` directory contains support code and the test script generated from the first 50 historic transactions of th contract. This test can be used as a regression test for modified versions of the contracts. The two `*.log` files and the file `replay.js` are the output of running `make.sh`. The file `replay.js` is a JavaScript program, that when run reports on the success or failure of replaying each of the first 50 transactions of the contract. This is intended only as an illustration of the possibilities. The analysis can easily be extended. See the example below for a sample output of running `make.sh` for the Vitaluck contract
 
-## Example of use
+## make.log
 
 ```
 $ bash -x make.sh
@@ -147,4 +147,4 @@ make.sh: line 6: 98557 Terminated ganache-cli -p 9545 -a 1000 -e 1000000 -d -l 1
 
 ## Zip files
 
-There are 26 zipped directories `A.dir` ... `Z.dir`, each of which contains contracts with a name beginning with the given letter of the alphabet.
+There are 26 zipped directories in this repository called `A.dir.zip` ... `Z.dir.zip`. Each contains the contracts with a name beginning with the given letter of the alphabet.
