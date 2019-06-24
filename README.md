@@ -9,8 +9,6 @@ There are 26 directories `A.dir` ... `Z.dir`, each of which contains contracts w
 
 For each contract there is a directory with the files needed by the `truffle test` command. The test script in the `test` directory has been generated from the first up to 50 historic transactions on the block chain as described in a paper currently under review.
 
-A test can be run by executing the file `make.sh` in the directory of the contract. The shell script fires up `ganache-cli` with the parameters needed for the test, compiles, and deploys the contract, runs the test and finally analyses the output of the test. The analysis shows the amount of gas used by each transacton. This is intended only as an illustration of the possibilities. The analysis can easily be extended. See the example below for a sample output of running `make.sh` for the Vitaluck contract.
-
 ## Prerequisites
 
 ```
@@ -24,6 +22,27 @@ Ganache CLI v6.2.5 (ganache-core: 2.3.3)
 
 Some contracts cannot be compiled with versions of Truffle later than v5.0.2.
 
+## Description
+
+A test consists of executing the file `make.sh` in the directory of the contract. This shell script fires up `ganache-cli` with the parameters needed for the test. It then runs `truffle test` to compile, and deploy the contract, and to run the test.
+```
+Vitaluck_3b400b.dir/
+├── contracts
+│   ├── Migrations.sol
+│   └── Vitaluck.sol
+├── ganache.log
+├── make.log
+├── make.sh
+├── migrations
+│   └── 1_initial_migration.js
+├── replay.js
+├── test
+│   ├── support.js
+│   └── vitaluck.js
+└── truffle-config.js
+```
+The structure of the `Vitaluck_3b400b.dir` sample directory follows the standard structure for Truffle tests. The directory `contracts` contains the Solidity code of the migration contract and the contract to be tested. The `migrations` directory contains the initial migration script. The `test` directory contains support code and the test script generated from the first 50 historic transactions of th contract. This test can be used as a regression test for modified versions of the contracts. The two `*.log` files and the file `replay.js` are the output of running `make.sh`. The file `replay.js` is a JavaScript program, that when run reports on the success or failure of replaying each of the first 50 transactions of the contract. This is intended only as an illustration of the possibilities. The analysis can easily be extended. See the example below for a sample output of running `make.sh` for the Vitaluck contract
+
 ## Example of use
 
 ```
@@ -34,7 +53,6 @@ $ bash -x make.sh
 + truffle test
 Compiling ./contracts/Migrations.sol...
 Compiling ./contracts/Vitaluck.sol...
-
 
   Contract: Vitaluck
     ✓ TEST: Vitaluck(  ) (1092ms)
@@ -94,7 +112,6 @@ Compiling ./contracts/Vitaluck.sol...
     ✓ TEST: check all blocks (284ms)
     ✓ analysis
 
-
   56 passing (35s)
 
 + kill 98557
@@ -127,5 +144,5 @@ Vitaluck tx 23 success: 153268 gas used
 Vitaluck tx 24 success: 153268 gas used
 Vitaluck tx 25 success: 153268 gas used
 Vitaluck tx 26 success: 153268 gas used
-make.sh: line 6: 98557 Terminated              ganache-cli -p 9545 -a 1000 -e 1000000 -d -l 10000000 -t "2018-01-26T13:29:19.000Z" > ganache.log
+make.sh: line 6: 98557 Terminated ganache-cli -p 9545 -a 1000 -e 1000000 -d -l 10000000 -t "2018-01-26T13:29:19.000Z" > ganache.log
 ```
