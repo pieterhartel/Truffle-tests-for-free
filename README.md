@@ -3,9 +3,7 @@ Verified smart contracts with truffle tests generated from the first 50 historic
 
 ## Summary
 
-This repository contains the source code and tests of a sample of about 1100 verified smart contracts that were downloaded on 1 Jan 2019 from etherscan.io. The file `scrapedcontractsVerified.json` contains the name, address and other relevant data of all verified smart contracts present on 1 Jan 2019 on https://etherscan.io/contractsVerified
-
-For each contract there is a directory with the files needed by the `truffle test` command. The test script in the `test` directory has been generated from the first up to 50 historic transactions on the block chain as described in a paper currently under review.
+This repository contains the source code and tests of a sample of about 1100 verified smart contracts that were downloaded on 1 Jan 2019 from etherscan.io. For each contract there is a directory with the files needed by the `truffle test` command. The test script in the `test` directory has been generated from the first up to 50 historic transactions on the block chain as described in a paper currently under review.
 
 ## Prerequisites
 
