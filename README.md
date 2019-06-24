@@ -1,9 +1,9 @@
 # Truffle-tests-for-free
-Verified smart contracts with truffle tests generated from the first 50 historic transactions on the blockchain
+Verified smart contracts with truffle tests generated from the first 50 historic transactions on the Ethereum blockchain
 
 ## Summary
 
-This repository contains the source code and tests of a sample of about 1100 verified smart contracts that were downloaded on 1 Jan 2019 from etherscan.io. For each contract there is a directory with the files needed by the `truffle test` command. The test script in the `test` directory has been generated from the first up to 50 historic transactions on the block chain as described in a paper currently under review.
+This repository contains the source code and a test for a sample of about 1100 verified smart contracts that were downloaded on 1 Jan 2019 from etherscan.io. For each contract there is a directory with the files needed by the `truffle test` command. The test script in the `test` directory has been generated from the first 50 historic transactions on the Ethereum blockchain as described in a paper currently under review.
 
 ## Prerequisites
 
@@ -16,11 +16,11 @@ $ ganache-cli -v
 Ganache CLI v6.2.5 (ganache-core: 2.3.3)
 ```
 
-Some contracts cannot be compiled with versions of Truffle later than v5.0.2.
+Note: Some contracts cannot be compiled with versions of Truffle later than v5.0.2.
 
 ## Description
 
-A test consists of executing the file `make.sh` in the directory of the contract. This shell script fires up `ganache-cli` with the parameters needed for the test. It then runs `truffle test` to compile, and deploy the contract, and to run the test. The example below was generated from the verified source available here: https://etherscan.io/address/0xef7c7254c290df3d167182356255cdfd8d3b400b#contracts
+A test is executed by the shell script `make.sh` in the directory of the contract. This shell script fires up `ganache-cli` with the parameters needed for the test. It then runs `truffle test` to compile, and deploy the contract, and to run the test. The example below was generated from the verified source downloaded from: https://etherscan.io/address/0xef7c7254c290df3d167182356255cdfd8d3b400b#contracts
 ```
 Vitaluck_3b400b.dir/
 ├── contracts
@@ -37,7 +37,7 @@ Vitaluck_3b400b.dir/
 │   └── vitaluck.js
 └── truffle-config.js
 ```
-The structure of the `Vitaluck_3b400b.dir` sample directory follows the standard structure for Truffle tests. The directory `contracts` contains the Solidity code of the migration contract and the contract to be tested. The `migrations` directory contains the initial migration script. The `test` directory contains support code and the test script generated from the first 50 historic transactions of th contract. This test can be used as a regression test for modified versions of the contracts. The two `*.log` files and the file `replay.js` are the output of running `make.sh`. The file `replay.js` is a JavaScript program, that when run reports on the success or failure of replaying each of the first 50 transactions of the contract. This is intended only as an illustration of the possibilities. The analysis can easily be extended. See the example below for a sample output of running `make.sh` for the Vitaluck contract
+The structure of the `Vitaluck_3b400b.dir` sample directory follows the standard structure for Truffle tests. The directory `contracts` contains the Solidity code of the migration contract and the contract to be tested. The `migrations` directory contains the initial migration script. The `test` directory contains support code and the test script generated from the first 50 historic transactions of th contract. This test can be used as a regression test for the contract. The two `*.log` files and the file `replay.js` are the output of running `make.sh`. The file `replay.js` is a JavaScript program, that when run reports on the success or failure of replaying each of the first 50 transactions of the contract. This is intended only as an illustration of the possibilities. The analysis can easily be extended. See the example below for a sample output of running `make.sh` for the Vitaluck contract
 
 ## make.log
 
