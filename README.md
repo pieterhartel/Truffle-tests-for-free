@@ -3,10 +3,10 @@ Verified smart contracts with truffle tests generated from the first 50 historic
 
 ## Summary
 
-This repository contains the source code and a test for a sample of about 1112 verified smart contracts that were downloaded on 1 Jan 2019 from etherscan.io. For each contract there is a directory with most of the files needed by the `truffle test` command. The source of the contract has been omitted (with one exception) because the terms and conditions of etherscan.io do not permit re-distribution of the source of verified smart contracts. For a full explanation of the terms and conditions please refer to https://www.reddit.com/r/etherscan/comments/c1zkjn/etherscan_verified_contracts/. The test script in the `test` directory has been generated from the first 50 historic transactions on the Ethereum blockchain as described in a paper currently under review.
+This repository contains the source code and a test for a sample of  1112 verified smart contracts that were downloaded on 1 Jan 2019 from etherscan.io. For each contract there is a directory with the files needed by the `truffle test` command except one. The source of the contract has been omitted because the terms and conditions of etherscan.io do not permit re-distribution of the source of verified smart contracts. For a full explanation of the terms and conditions please refer to https://www.reddit.com/r/etherscan/comments/c1zkjn/etherscan_verified_contracts/. The test script in the `test` directory has been generated from the first 50 historic transactions on the Ethereum blockchain as described in a paper currently under review.
 
 ## Prerequisites
-The simplest way to download the source code of a smart contract is to visit it's contracts page and then to click on the copy-to-clipboard icon for the source.
+The simplest way to download the source code of a smart contract is to browse the contracts page on etherscan.io and then to click on the copy-to-clipboard icon of the source.
 
 ```
 $ truffle version
@@ -20,7 +20,7 @@ Note: Some contracts cannot be compiled with versions of Truffle later than v5.0
 
 ## Description
 
-A test is executed by the shell script `make.sh` in the directory of the contract. This shell script fires up `ganache-cli` with the parameters needed for the test. It then runs `truffle test` to compile, and deploy the contract, and to run the test. The example below was generated from the verified source downloaded from the contracts page: https://etherscan.io/address/0xef7c7254c290df3d167182356255cdfd8d3b400b#contracts
+A test is executed by the shell script `make.sh` in the main directory of the contract. This shell script fires up `ganache-cli` with the parameters needed for the test. It then runs `truffle test` to compile, and deploy the contract, and to run the test. The example below contains the source downloaded from the contracts page: https://etherscan.io/address/0xef7c7254c290df3d167182356255cdfd8d3b400b#contracts
 ```
 V.dir/Vitaluck_3b400b.dir/
 ├── contracts
@@ -37,9 +37,9 @@ V.dir/Vitaluck_3b400b.dir/
 │   └── vitaluck.js
 └── truffle-config.js
 ```
-The structure of the `Vitaluck_3b400b.dir` sample directory follows the standard structure for Truffle tests. The directory `contracts` contains the Solidity code of the migration contract and the contract to be tested. The `migrations` directory contains the initial migration script. The `test` directory contains support code and the test script generated from the first 50 historic transactions of th contract. This test can be used as a regression test for the contract. The two `*.log` files and the file `replay.js` are the output of running `make.sh`. The file `replay.js` is a JavaScript program, that when run reports on the success or failure of replaying each of the first 50 transactions of the contract. This is intended only as an illustration of the possibilities. The analysis can easily be extended. See the example below for a sample output of running `make.sh` for the Vitaluck contract
+The structure of the `Vitaluck_3b400b.dir` main directory follows the standard structure for Truffle tests. The directory `contracts` contains the Solidity code of the migration contract and the contract to be tested. The `migrations` directory contains the initial migration script. The `test` directory contains support code and the test script generated from the first 50 historic transactions of the contract. This test can be used as a regression test for the contract, or it can be used in combination with testing tools, such as a fuzzer. The two `*.log` files and the file `replay.js` are the output of running `make.sh`. The file `replay.js` is a JavaScript program, that when run reports on the success or failure of replaying each of the first 50 transactions of the contract. This is intended only as an illustration of the possibilities. The analysis can easily be extended. See the example below for a sample output of running `make.sh` for the Vitaluck contract
 
-## Vitaluck analysis
+## Vitaluck output
 
 ```
 $ bash -x make.sh
